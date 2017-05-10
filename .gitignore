@@ -1,0 +1,17 @@
+# VIM
+.*.swo
+.*.swp
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite*
+
+# pyc files #
+#############
+*.pyc
+
+# migration files #
+###################
+rango/migrations/00*
