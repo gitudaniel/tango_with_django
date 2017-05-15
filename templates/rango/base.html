@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load staticfiles %}
+{% load rango_template_tags %}
 
 <html>
     <head lang="en">
@@ -13,18 +14,33 @@
     </head>
     <body>
         <div>
+            {% if messages %}
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            {% endif %}  
             {% block body_block %}
             {% endblock %}
         </div>
         <hr />
         <div>
             <ul>
-                {% block footer_block %}
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'restricted' %}">Restricted Page</a></li>
+                    <li><a href="{% url 'logout' %}">Log Out</a></li>
                     <li><a href="{% url 'add_category' %}">Add New Category</a></li>
-                    <li><a href="{% url 'about' %}">About</a></li>
-                    <li><a href="{% url 'index' %}">Index</a></li>
-                {% endblock %}
+
+                {% else %}
+                    <li><a href="{% url 'register' %}">Sign Up</a></li>
+                    <li><a href="{% url 'login' %}">Log in</a></li>
+                {% endif %}
+                <li><a href="{% url 'about' %}">About</a></li>                    <li><a href="{% url 'index' %}">Index</a></li>
             </ul>
+        </div>
+        <div>
+            {% block sidebar_block %}
+                {% get_category_list category %}
+            {% endblock %}
         </div>
     </body>
 </html>

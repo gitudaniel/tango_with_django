@@ -1,5 +1,6 @@
 from django import forms
-from rango.models import Page, Category
+from django.contrib.auth.models import User
+from rango.models import Page, Category, UserProfile
 
 
 class CategoryForm(forms.ModelForm):
@@ -36,3 +37,16 @@ class PageForm(forms.ModelForm):
         # or specify the fields to include (i.e. not include the category field)
         # fields = ('title', 'url', 'views')
 
+
+class UserForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput()) # this hides the password as it is being entered to hide it from prying eyes. It does not appear as plain text instead it is a series of dots
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password')
+
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ('website', 'picture')

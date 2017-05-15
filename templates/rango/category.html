@@ -23,9 +23,10 @@
     {% endif %}
 {% endblock %}
 
-{% block footer_block %}
-    <li><a href="{% url 'add_page' category.slug %}">Add a Page</a></li>
-    <li><a href="{% url 'about' %}">About</a></li>
-    <li><a href="{% url 'index' %}">Index</a></li>
-{% endblock %}
-
+<div>
+    <ul>
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'add_page' category.slug %}">Add a Page</a></li>
+        {% endif %}
+    </ul>
+</div>

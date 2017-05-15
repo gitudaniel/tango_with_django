@@ -1,4 +1,5 @@
 import os
+from django.core.urlresolvers import reverse_lazy
 """
 Django settings for tango_with_django_project project.
 
@@ -16,6 +17,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'static') # Find at EOF
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
+
+
+# Direct users to a login page if they try to access certain features
+LOGIN_URL = reverse_lazy('login')
 
 
 # Quick-start development settings - unsuitable for production
@@ -87,6 +92,12 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
+
+PASSWORD_HASHERS = [
+        'django.contrib.auth.hashers.Argon2PasswordHasher',
+        'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+        'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+]
 
 AUTH_PASSWORD_VALIDATORS = [
     {
