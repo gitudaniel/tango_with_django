@@ -20,7 +20,20 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
 
 # Direct users to a login page if they try to access certain features
-LOGIN_URL = reverse_lazy('login')
+##LOGIN_URL = reverse_lazy('login')
+
+# The following variables are part of the registration package's configuration
+# If True, the users can register
+REGISTRATION_OPEN = True
+# Gives users a one week activation window
+ACCOUNT_ACTIVATION_DAYS = 7
+# If True, the user will automatically be logged in
+REGISTRATION_AUTO_LOGIN = True
+# This is the page users will arrive at after successful log in
+LOGIN_REDIRECT_URL = '/'
+# The pages users are directed to if they are trying to access pages
+# requiring loggin in while not logged in
+LOGIN_URL = '/accounts/login/'
 
 
 # Quick-start development settings - unsuitable for production
@@ -45,6 +58,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rango',
+    'registration',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
