@@ -7,6 +7,12 @@
     This tutorial has been put together by Grenouille <br />
 </div>
 <div>
+    {% if user.is_authenticated %}
+        <p>{{ user.get_username }}, you have visited the site {{ visits }} times</p>
+        <p>Thank you for your patronage</p>
+    {% endif %}
+</div>
+<div>
     <a href={% url 'home' %}>Home</a><br />
     <img src="{{ MEDIA_URL }}cat.jpeg"
          alt="Picture of a cat"/>
