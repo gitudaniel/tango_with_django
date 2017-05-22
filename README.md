@@ -1,6 +1,7 @@
 # tango_with_django
 Based off of the book Tango with Django that teaches Django workflows
 
+
 # To run this app
 Create a virtual environment using virtualenv(https://virtualenv.pypa.io/en/stable/) or virtualenv wrapper(https://virtualenvwrapper.readthedocs.io/en/latest/)
 
