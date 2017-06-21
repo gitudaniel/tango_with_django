@@ -145,6 +145,18 @@ def show_category(request, category_name_slug):
     # Go render the response and return it to the client.
     return render(request, 'rango/category.html', context_dict)
 
+
+
+def categories(request):
+    """We want to display all the categories in one page for viewing"""
+    context_dict = {}
+
+    all_categories = Category.objects.all()
+
+    context_dict['categories'] = all_categories
+
+    return render(request, 'rango/category_listing.html', context_dict)
+
 @login_required
 def add_category(request):
     form = CategoryForm()

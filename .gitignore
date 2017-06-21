@@ -15,3 +15,4 @@
 # migration files #
 ###################
 rango/migrations/00*
+db.sqlite3

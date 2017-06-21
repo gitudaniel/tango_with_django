@@ -1,0 +1,15 @@
+{% extends 'rango/base.html' %}
+
+{% block body_block %}
+    <h1><strong>Featured Categories</strong></h1>
+
+    <div>
+        {% for category in categories %}
+            <li>
+                <a href='{{category.slug}}'>{{category.name}}</a>
+            </li>
+        {% endfor %}
+
+    </div>
+
+{% endblock %}
