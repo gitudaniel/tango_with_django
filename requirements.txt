@@ -12,5 +12,6 @@ django-widget-tweaks==1.4.1
 enum34==1.1.6
 pycparser==2.17
 six==1.10.0
-
+praw==4.5.1
+prawcore==0.10.1
 
