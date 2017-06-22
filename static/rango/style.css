@@ -1,5 +1,11 @@
 #sidebar {
+    position: fixed;
     padding: 50px;
     top: 0;
     right: 0;
+    margin-top: 20px;
+}
+
+#index-jumbotron {
+    margin-top: 20px;
 }

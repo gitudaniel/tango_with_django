@@ -65,9 +65,8 @@
                     </ul>
             </div>
         </nav>
-        <div class="container-fluid">
+        <div class="container-fluid" id="index-jumbotron">
             <div class="row row-offcanvas row-offcanvas-right">
-                    <!-- <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-md-2 main"> -->
                     <div class="col-12 col-md-9">
                         {% block body_block %}{% endblock %}
                     </div>
@@ -75,10 +74,13 @@
 
         </div>
         <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
-            <div class="jumbotron">
-                {% block sidebar_block %}
-                    {% get_category_list category %}
-                {% endblock %}
+            <h3>All Categories</h3>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    {% block sidebar_block %}
+                        {% get_category_list category %}
+                    {% endblock %}
+                </li>
             </div>
         </div>
 
