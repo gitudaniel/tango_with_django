@@ -1,15 +1,21 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from datetime import datetime
+
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
+from django.template import loader
+
 from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
 from rango.models import Category, Page
 from registration.backends.simple.views import RegistrationView
+
+import praw
+import itertools
 
 
 def home(request):
@@ -156,6 +162,39 @@ def categories(request):
     context_dict['categories'] = all_categories
 
     return render(request, 'rango/category_listing.html', context_dict)
+
+
+
+def find_categories(request):
+    """For the discovery of new categories by users"""
+    reddit = praw.Reddit(client_id='qsgxHjaA61vdkA',
+                         client_secret='9VTowZnIaRRYUS45uNCssT13SoM',
+                         user_agent='web app:Reddit Resources:v0.0.1 (by /u/active_blogger)')
+
+    context_dict = {}
+    
+    resources = {}
+    titles = []
+    title_urls = []
+
+    template = loader.get_template('rango/base.html')
+
+    if template:
+        if request.method == 'POST':
+            reddit_subreddit = request.POST.get('subreddit')
+
+            for submissions in reddit.subreddit(reddit_subreddit).top(limit=20):
+                titles.append(submissions.title)
+                title_urls.append(submissions.url)
+
+            context_dict['reddit_subreddit'] = reddit_subreddit
+
+    resources = dict(itertools.izip(titles, title_urls))
+
+    context_dict['resources'] = resources
+    return render(request, 'rango/find_categories.html', context_dict)
+
+
 
 @login_required
 def add_category(request):

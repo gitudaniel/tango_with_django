@@ -73,14 +73,25 @@
             </div>
 
         </div>
-        <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
-            <h3>All Categories</h3>
-            <ul class="list-group">
-                <li class="list-group-item">
-                    {% block sidebar_block %}
-                        {% get_category_list category %}
-                    {% endblock %}
-                </li>
+        <div class="sidebar-offcanvas" id="sidebar">
+            <div class="find-resource-group">
+                <h2>Find new Categories</h2>
+                <form method="POST" action="/rango/find_category/">
+                    <input name="subreddit" id="subreddit_name" placeholder="Enter a subreddit" />
+                    {% csrf_token %}
+                    <input type="submit", value="Search" />
+                </form>
+            </div>
+
+            <div class="sidebar-categories">
+                <h3>All Categories</h3>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        {% block sidebar_block %}
+                            {% get_category_list category %}
+                        {% endblock %}
+                    </li>
+                </ul>
             </div>
         </div>
 

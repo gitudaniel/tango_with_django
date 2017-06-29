@@ -1,0 +1,15 @@
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+{% block body_block %}
+<div>
+    <h3>{{ reddit_subreddit }}</h3>
+    <ul class="resource-group">
+        {% for key, value in resources.items %}
+            <li class="list-resource-items">
+                <a href='{{value}}'>{{key}}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

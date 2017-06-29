@@ -8,4 +8,15 @@
 
 #index-jumbotron {
     margin-top: 20px;
+    width: 80%;
+    float: left;
+}
+
+.find-resource-group {
+    top: 10;
+    right: 10;
+}
+
+.sidebar-categories {
+    margin-top: 10px;
 }
