@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'rango',
     'registration',
     'widget_tweaks',
+    'django_pdb',
 ]
 
 MIDDLEWARE = [

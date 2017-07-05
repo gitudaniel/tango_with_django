@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
+from django.forms import formset_factory
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
@@ -169,25 +170,47 @@ def find_categories(request):
     """For the discovery of new categories by users"""
     reddit = praw.Reddit(client_id='qsgxHjaA61vdkA',
                          client_secret='9VTowZnIaRRYUS45uNCssT13SoM',
+                         redirect_uri='http://localhost:8000/rango/',
                          user_agent='web app:Reddit Resources:v0.0.1 (by /u/active_blogger)')
 
     context_dict = {}
-    
+
+    category = Category.objects.all()
+    context_dict['category'] = category
+
     resources = {}
     titles = []
     title_urls = []
 
-    template = loader.get_template('rango/base.html')
+    template = loader.get_template('rango/base.html') # Template we're interested in
 
-    if template:
-        if request.method == 'POST':
+    if template: # If we are in the template of interest
+        if request.method == 'POST': # and user submits a POST request
             reddit_subreddit = request.POST.get('subreddit')
+             # get whatever is in the form with the name subreddit
+             # assign variable reddit_subreddit
+             # pass it to praw as the subreddit being searched for
+
+            context_dict['reddit_subreddit'] = reddit_subreddit
 
             for submissions in reddit.subreddit(reddit_subreddit).top(limit=20):
                 titles.append(submissions.title)
                 title_urls.append(submissions.url)
 
-            context_dict['reddit_subreddit'] = reddit_subreddit
+
+            category = Category.objects.all()
+            reddit_subreddit_caps = reddit_subreddit.capitalize()
+            if reddit_subreddit_caps not in category:
+                form = CategoryForm(initial={
+                    'name': reddit_subreddit_caps
+                })
+
+                if form.is_valid():
+                    cat = form.save(commit=True)
+                else:
+                    print form.errors
+            
+                context_dict['form'] = form
 
     resources = dict(itertools.izip(titles, title_urls))
 
@@ -213,7 +236,11 @@ def add_category(request):
             # We could give a confirmation message
             # But since the most recent category added is on the index page
             # Then we can direct the user back to the index page.
-            return index(request)
+            if request.POST.get('reddit category'):
+                return HttpResponseRedirect('/rango/find_category/') 
+            else:
+                return index(request)
+
         else:
             # The supplied form contained errors =
             # just print them to the terminal.
