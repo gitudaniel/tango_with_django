@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {% load staticfiles %}
 {% load static %}
-{% load rango_template_tags %}
+{% load resourcy_template_tags %}
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -9,9 +9,9 @@
                                     initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="icon" href="{% static 'images/rango-favicon.ico' %}">
+        <link rel="icon" href="{% static 'images/resourcy-favicon.ico' %}">
         <title>
-            Rango - {% block title %}How to Tango with Django!{% endblock %}
+            Resourcy - {% block title %}Pass the sauce will you{% endblock %}
         </title>
         <!-- Bootstrap core CSS -->
         <link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css"
@@ -21,7 +21,7 @@
             "http://v4-alpha.getbootstrap.com/examples/dashboard/dashboard.css"
               rel="stylesheet">
         <!-- My own CSS files -->
-        <link rel="stylesheet" type="text/css" href="{% static 'rango/style.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'resourcy/style.css' %}" />
     </head>
     <body>
         <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
@@ -31,7 +31,7 @@
                     aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="{% url 'index' %}">Rango</a>
+            <a class="navbar-brand" href="{% url 'index' %}">Resourcy</a>
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
@@ -76,7 +76,7 @@
         <div class="sidebar-offcanvas" id="sidebar">
             <div class="find-resource-group">
                 <h2>Find new Categories</h2>
-                <form method="POST" action="/rango/find_category/">
+                <form method="POST" action="/resourcy/find_category/">
                     <input name="subreddit" id="subreddit_name" placeholder="Enter a subreddit" />
                     {% csrf_token %}
                     <input type="submit", value="Search" />

@@ -1,10 +1,10 @@
-{% extends 'rango/base.html' %}
+{% extends 'resourcy/base.html' %}
 {% load staticfiles %}
 
 {% block body_block %}
 <div>
     <h3>{{ reddit_subreddit }}</h3>
-    <form method="POST" action='/rango/add_category/'>
+    <form method="POST" action='/resourcy/add_category/'>
         {% csrf_token %}
         {{ form }}
         <input type="submit" name="reddit category" value="Create Category">

@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-from rango.models import Category, Page, UserProfile
+from resourcy.models import Category, Page, UserProfile
 
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug':('name',)} # this creates a slug off of the category name entered. Python User Group becomes python_user_group

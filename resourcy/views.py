@@ -11,12 +11,13 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 
-from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
-from rango.models import Category, Page
+from resourcy.forms import CategoryForm, PageForm, UserForm, UserProfileForm
+from resourcy.models import Category, Page
 from registration.backends.simple.views import RegistrationView
 
 import praw
 import itertools
+import os
 
 
 def home(request):
@@ -99,7 +100,7 @@ def index(request):
     # Return a rendered response to send to the client
     # We make use of the shortcut function to make our lives easier.
     # The first parameter is the template we wish to use.
-    response = render(request, 'rango/index.html', context_dict)
+    response = render(request, 'resourcy/index.html', context_dict)
 
 
     # Call function to handle the cookies
@@ -117,7 +118,7 @@ def about(request):
 
     visitor_cookie_handler(request)
     context_dict = {'visits': request.session['visits']}
-    return render(request, 'rango/about.html', context_dict)
+    return render(request, 'resourcy/about.html', context_dict)
 
 
 def show_category(request, category_name_slug):
@@ -150,7 +151,7 @@ def show_category(request, category_name_slug):
         context_dict['category'] = None
 
     # Go render the response and return it to the client.
-    return render(request, 'rango/category.html', context_dict)
+    return render(request, 'resourcy/category.html', context_dict)
 
 
 
@@ -162,15 +163,15 @@ def categories(request):
 
     context_dict['categories'] = all_categories
 
-    return render(request, 'rango/category_listing.html', context_dict)
+    return render(request, 'resourcy/category_listing.html', context_dict)
 
 
 
 def find_categories(request):
     """For the discovery of new categories by users"""
-    reddit = praw.Reddit(client_id='qsgxHjaA61vdkA',
-                         client_secret='9VTowZnIaRRYUS45uNCssT13SoM',
-                         redirect_uri='http://localhost:8000/rango/',
+    reddit = praw.Reddit(client_id=os.environ['REDDIT_CLIENT_ID'],
+                         client_secret=os.environ['REDDIT_CLIENT_SECRET'],
+                         redirect_uri='http://localhost:8000/resourcy/',
                          user_agent='web app:Reddit Resources:v0.0.1 (by /u/active_blogger)')
 
     context_dict = {}
@@ -182,7 +183,7 @@ def find_categories(request):
     titles = []
     title_urls = []
 
-    template = loader.get_template('rango/base.html') # Template we're interested in
+    template = loader.get_template('resourcy/base.html') # Template we're interested in
 
     if template: # If we are in the template of interest
         if request.method == 'POST': # and user submits a POST request
@@ -215,7 +216,7 @@ def find_categories(request):
     resources = dict(itertools.izip(titles, title_urls))
 
     context_dict['resources'] = resources
-    return render(request, 'rango/find_categories.html', context_dict)
+    return render(request, 'resourcy/find_categories.html', context_dict)
 
 
 
@@ -237,7 +238,7 @@ def add_category(request):
             # But since the most recent category added is on the index page
             # Then we can direct the user back to the index page.
             if request.POST.get('reddit category'):
-                return HttpResponseRedirect('/rango/find_category/') 
+                return HttpResponseRedirect('/resourcy/find_category/') 
             else:
                 return index(request)
 
@@ -248,7 +249,7 @@ def add_category(request):
 
     # Will handle the bad form, new form, or no form supplied cases.
     # Render the form with error messages (if any).
-    return render(request, 'rango/add_category.html', {'form': form})
+    return render(request, 'resourcy/add_category.html', {'form': form})
 
 
 @login_required
@@ -272,10 +273,10 @@ def add_page(request, category_name_slug):
             print form.errors
 
     context_dict = {'form': form, 'category': category}
-    return render(request, 'rango/add_page.html', context_dict)
+    return render(request, 'resourcy/add_page.html', context_dict)
 
 
 @login_required
 def restricted(request):
-    return render(request, 'rango/restricted.html')
+    return render(request, 'resourcy/restricted.html')
 

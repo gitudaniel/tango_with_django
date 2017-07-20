@@ -1,4 +1,4 @@
-"""tango_with_django_project URL Configuration
+"""resourcy_project URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.11/topics/http/urls/
@@ -18,15 +18,15 @@ from django.contrib import admin
 from django.conf.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
-from rango import views
-from rango.views import MyRegistrationView
+from resourcy import views
+from resourcy.views import MyRegistrationView
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^rango/', include('rango.urls')),
+    url(r'^resourcy/', include('resourcy.urls')),
        # maps any URLs starting with
-       # rango/ to be handled by the
-       # rango application
+       # resourcy/ to be handled by the
+       # resourcy application
     url(r'^admin/', admin.site.urls),
 
     url(r'^accounts/register/$', MyRegistrationView.as_view(),

@@ -1,20 +1,7 @@
-{% extends 'rango/base.html' %}
+{% extends 'resourcy/base.html' %}
 {% load staticfiles %} <!-- New line -->
 
 {% block body_block %}
-<div class="jumbotron">
-    {% if user.is_authenticated %}
-    <h1>Rango says hey there {{ user.username }}</h1> <!-- If the user is authenticated show the username -->
-    {% else %}
-        <h1>Rango says...</h1>
-        <div>
-            hey there partner!
-        </div>
-    {% endif %}
-</div>
-
-    <p> visits: {{ visits }} </p>
-
     <div class="row">
         <div class="col-lg-6">
             <h2>Most Liked Categories</h2>
@@ -23,7 +10,7 @@
             <ul class="list-group">
                 {% for category in categories %}
                     <li class="list-group-item">
-                        <a href="/rango/category/{{ category.slug }}">{{ category.name }}</a>
+                        <a href="/resourcy/category/{{ category.slug }}">{{ category.name }}</a>
                     </li>
                 {% endfor %}
             </ul>
@@ -50,10 +37,4 @@
             </div>
         </div>
     </div>
-
-    <!--<div>
-        <img src="{% static "images/rango-2.png" %}"
-            alt="Picture of Rango" />
-    </div> -->
-
 {% endblock %}
