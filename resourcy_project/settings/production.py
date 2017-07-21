@@ -39,8 +39,6 @@ LOGIN_URL = '/accounts/login/'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = '_9m$e#g)sjclu^nl@$0_g)(j@gu!w@!^e7p78mxbo@q(f*qdp5'
 SECRET_KEY = os.environ['RANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
