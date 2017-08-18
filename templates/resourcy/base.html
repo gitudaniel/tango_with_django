@@ -25,6 +25,8 @@
     </head>
     <body>
         <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+            <div class="container-fluid wide">
+            <div class="navbar-header text-left">
             <button type="button" class="navbar-toggler hidden-sm-up"
                     data-toggle="collapse" data-target="#navbarNav"
                     aria-expanded="false" aria-controls="navbarNav"
@@ -32,6 +34,8 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="{% url 'index' %}">Resourcy</a>
+            </div>
+            </div>
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
@@ -65,14 +69,18 @@
                     </ul>
             </div>
         </nav>
-        <div class="container-fluid" id="index-jumbotron">
-            <div class="row row-offcanvas row-offcanvas-right">
-                    <div class="col-12 col-md-9">
-                        {% block body_block %}{% endblock %}
-                    </div>
+
+        <div class="row">
+        <div class="col-md-8">
+        <div class="container-fluid" id="index-jumbotrons">
+            <div class="col-md-12">
+                {% block body_block %}{% endblock %}
             </div>
 
         </div>
+        </div>
+
+        <div class="col-md-4">
         <div class="sidebar-offcanvas" id="sidebar">
             <div class="find-resource-group">
                 <h2>Find new Categories</h2>
@@ -93,6 +101,10 @@
                     </li>
                 </ul>
             </div>
+        </div>
+        </div>
+        </div>
+        </div>
         </div>
 
         <!-- Bootstrap core JavaScript
