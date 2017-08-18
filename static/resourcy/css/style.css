@@ -1,6 +1,6 @@
 #sidebar {
-    position: relative;
-    padding: 0 15px 0 15px;
+    position: fixed;
+    padding: 50px;
     top: 0;
     right: 0;
     margin-top: 20px;
@@ -9,12 +9,6 @@
 #index-jumbotron {
     margin-top: 20px;
     width: 80%;
-    float: left;
-}
-
-#index-jumbotrons {
-    margin-top: 20px;
-    width: 100%;
     float: left;
 }
 
@@ -27,18 +21,3 @@
     margin-top: 10px;
 }
 
-.wide {
-    width: 100%;
-}
-
-.navbar-toggler {
-    margin-left: -20px;
-}
-
-.navbar-brand {
-    margin-left: 15px;
-}
-
-.bg-inverse {
-    background-color: #00004c !important;
-}
