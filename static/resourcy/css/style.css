@@ -42,3 +42,15 @@
 .bg-inverse {
     background-color: #00004c !important;
 }
+
+.btn {
+    background-color: #1A1A5E;
+}
+
+a:link {
+    color: #1A1A5E;
+}
+
+a:hover {
+    color: #0000EE;
+}
