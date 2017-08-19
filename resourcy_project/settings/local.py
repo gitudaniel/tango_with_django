@@ -17,7 +17,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'static') # Find at EOF
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
-print BASE_DIR
 
 
 # Direct users to a login page if they try to access certain features
