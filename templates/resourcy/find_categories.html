@@ -13,7 +13,7 @@
     
     {% for key, value in resources.items %}
         <div class="col-md-12" style="padding:0.2em 0;">
-            <input type="checkbox" id="links" value="reddit links"><a href='{{value}}' target="_blank">{{key}}</a></>
+            <a href='{{value}}' target="_blank">{{key}}</a>
         </div>
     {% endfor %}
 </div>
