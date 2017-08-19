@@ -4,11 +4,15 @@
 
 {% block body_block %}
 <h1>Login</h1>
-<form method="post" action="." class="col-4">
+<form method="post" action="." class="col-md-8">
     {% csrf_token %}
-    {% render_field form.username class="form-control" %}
-    {% render_field form.password class="form-control" %}
-    <input type="submit" value="Log in" />
+    <div class="form-group">
+    {% render_field form.username class="form-control" placeholder=form.username.label %}
+    </div>
+    <div class="form-group">
+    {% render_field form.password class="form-control" placeholder=form.password.label %}
+    </div>
+    <input type="submit" class="btn btn-primary" value="Log in" />
     <input type="hidden" name="next" value="{{ next }}" />
 </form>
 <p>

@@ -1,9 +1,24 @@
 {% extends "resourcy/base.html" %}
+
+{% load widget_tweaks %}
+
 {% block body_block %}
     <h1>Register Here</h1>
-    <form method="post" action=".">
+    <form method="post" action="." class="col-md-8">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Submit" />
+
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+
+        {% for field in form.visible_fields %}
+            <div class="form-group">
+                {% render_field field class="form-control" placeholder=field.label %}
+                {% for error in field.errors %}
+                    <span class="help-block">{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        <input type="submit" class="btn btn-primary" value="Submit" />
     </form>
 {% endblock %}
