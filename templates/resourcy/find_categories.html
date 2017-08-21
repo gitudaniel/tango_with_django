@@ -1,19 +1,27 @@
 {% extends 'resourcy/base.html' %}
 {% load staticfiles %}
 
+{% load widget_tweaks %}
+
 {% block body_block %}
 <div>
     <h3>{{ reddit_subreddit }}</h3>
     <form method="POST" action='/resourcy/add_category/'>
         {% csrf_token %}
-        {{ form }}
-        <input type="submit" name="reddit category" value="Create Category">
+        <div class="form-group col-md-4">
+            {% render_field form.name class="form-control" placeholder="Enter the category name" %}
+        </div>                {% comment %}{{ form }}{% endcomment %}
+              <input type="submit" class="btn btn-primary" name="reddit category" value="Create Category">
     </form>
 
     
     {% for key, value in resources.items %}
         <div class="col-md-12 table" style="padding:0.2em 0;">
-            <a href='{{value}}' target="_blank">{{key}}</a>
+            <ul>
+                <li>
+                    <a href='{{value}}' target="_blank">{{key}}</a>
+                </li>
+            </ul>
         </div>
     {% endfor %}
 </div>
