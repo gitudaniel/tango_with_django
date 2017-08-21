@@ -45,6 +45,7 @@
 
 .btn {
     background-color: #1A1A5E;
+    color: #fff !important;
 }
 
 a:link {
@@ -53,4 +54,8 @@ a:link {
 
 a:hover {
     color: #0000EE;
+}
+
+.add_page_width {
+    width: 80%;
 }
